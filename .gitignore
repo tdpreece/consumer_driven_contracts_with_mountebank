@@ -1,0 +1,8 @@
+mountebank/mountebank/
+mountebank/mb
+mountebank/mb.log
+mountebank/mb.pid
+mountebank/mb1.log
+mountebank/node-v5.0.0-linux-x64
+*.swp
+*.pyc
