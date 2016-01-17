@@ -1,0 +1,17 @@
+{
+    "predicates": [{
+        "equals": {
+          "method": "GET",
+          "path": "/status"
+        }
+    }],
+    "responses": [{
+      "is": {
+        "statusCode": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\"time up\": 100}"
+      }
+    }]
+}
