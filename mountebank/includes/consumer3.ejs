@@ -1,0 +1,19 @@
+{
+    "predicates": [{
+        "equals": {
+          "method": "POST",
+          "path": "/process-it",
+          "body": "{\"id\": 10}"
+        }
+    }],
+    "responses": [{
+      "is": {
+        "statusCode": 200,
+        "headers": {
+          "Location": "http://localhost:4545/customers/123",
+          "Content-Type": "application/json"
+        },
+        "body": "{\"id\": 123}"
+      }
+    }]
+}
