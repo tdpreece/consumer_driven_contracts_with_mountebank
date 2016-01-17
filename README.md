@@ -12,5 +12,5 @@
 
 # To do
 * Add a consumer, with tests that use the mountebank instance as stub
-* Add a json document example
-* Add a second consumer
+* Add a json document in predicate example
+* Move contracts out of mountebank folder and into a separate one (I don't thing that these should be in the provider or consumer repo because don't want to have to checkout the providers whole repo if working on the consumer and vice versa.)
