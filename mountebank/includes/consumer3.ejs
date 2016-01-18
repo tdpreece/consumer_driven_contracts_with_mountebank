@@ -1,10 +1,6 @@
 {
     "predicates": [{
-        "equals": {
-          "method": "POST",
-          "path": "/process-it",
-          "body": "{\"id\": 10}"
-        }
+    "inject": "function(request) { return (request.method === \"POST\") && (request.path === \"/process-it\") && (request.body === \"{}\")}"
     }],
     "responses": [{
       "is": {
