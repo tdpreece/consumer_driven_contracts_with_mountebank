@@ -1,0 +1,3 @@
+function(request) { 
+    return (request.method === "POST") && (request.path === "/process-it") && (request.body === "{\"x\": 1}");
+}

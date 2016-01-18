@@ -1,6 +1,6 @@
 {
     "predicates": [{
-    "inject": "function(request) { return (request.method === \"POST\") && (request.path === \"/process-it\") && (request.body === \"{}\")}"
+    "inject": "<%- stringify(filename, 'includes/consumer3_predicate_function.ejs') %>"
     }],
     "responses": [{
       "is": {
