@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 cd ../mountebank
 ./start_mountebank &> /dev/null &
 mountebank_pid=$!
@@ -17,4 +19,7 @@ cd -
 python test.py
 
 kill "$provider_pid"
-kill "$mountebank_pid"
+
+cd ../mountebank
+./mb stop
+cd -
