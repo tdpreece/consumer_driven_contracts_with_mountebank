@@ -11,7 +11,7 @@
 * http://www.mbtest.org
 
 # To do
-* Add code to predicate in consumer 3 so that it can handle the keys in the dictionary in any order (should take a look at "Predicate injection" and https://www.npmjs.com/package/deep-equal 
+* Add code to predicate in consumer 3 so that it can handle the keys in the dictionary in any order (should take a look to seem if I can access Mountbank's deepEqual and https://www.npmjs.com/package/deep-equal)
 * Add a consumer, with tests that use the mountebank instance as stub
 * Move contracts out of mountebank folder and into a separate one (I don't thing that these should be in the provider or consumer repo because don't want to have to checkout the providers whole repo if working on the consumer and vice versa.)
 * What happens when predicates of one consumer are a subset of another consumer?
