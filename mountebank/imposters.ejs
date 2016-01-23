@@ -5,7 +5,43 @@
       "protocol": "http",
       "stubs": [
         <% include includes/consumer1.ejs %>,
+        {
+            "responses": [{
+              "is": {
+                "statusCode": 500,
+                "headers": {
+                  "Content-Type": "text/plain"
+                },
+                "body": "Request did not match any stub."
+              }
+            }]
+        }
+
+      ]
+    },
+    {
+      "port": 4546,
+      "protocol": "http",
+      "stubs": [
         <% include includes/consumer2.ejs %>,
+        {
+            "responses": [{
+              "is": {
+                "statusCode": 500,
+                "headers": {
+                  "Content-Type": "text/plain"
+                },
+                "body": "Request did not match any stub."
+              }
+            }]
+        }
+
+      ]
+    },
+    {
+      "port": 4547,
+      "protocol": "http",
+      "stubs": [
         <% include includes/consumer3.ejs %>,
         {
             "responses": [{
