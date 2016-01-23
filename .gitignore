@@ -1,8 +1,8 @@
-mountebank/mountebank/
-mountebank/mb
-mountebank/mb.log
-mountebank/mb.pid
-mountebank/mb1.log
-mountebank/node-v5.0.0-linux-x64
+consumer_contracts_for_provider/mountebank/
+consumer_contracts_for_provider/mb
+consumer_contracts_for_provider/mb.log
+consumer_contracts_for_provider/mb.pid
+consumer_contracts_for_provider/mb1.log
+consumer_contracts_for_provider/node-v5.0.0-linux-x64
 *.swp
 *.pyc

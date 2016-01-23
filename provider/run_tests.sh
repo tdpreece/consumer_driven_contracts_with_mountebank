@@ -2,7 +2,7 @@
 
 set -e
 
-cd ../mountebank
+cd ../consumer_contracts_for_provider
 ./start_mountebank &> /dev/null &
 mountebank_pid=$!
 sleep 1
@@ -20,6 +20,6 @@ python test.py
 
 kill "$provider_pid"
 
-cd ../mountebank
+cd ../consumer_contracts_for_provider
 ./mb stop
 cd -
