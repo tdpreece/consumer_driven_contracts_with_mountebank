@@ -1,1 +1,1 @@
-./mb start --configfile contracts/imposters.ejs --allowInjection
+./mb restart --configfile contracts/imposters.ejs --allowInjection
