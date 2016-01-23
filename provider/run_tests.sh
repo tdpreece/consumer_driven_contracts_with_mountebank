@@ -3,7 +3,7 @@
 set -e
 
 cd ../consumer_contracts_for_provider
-./start_mountebank &> /dev/null &
+./restart_mountebank &> /dev/null &
 mountebank_pid=$!
 sleep 1
 echo "mountebank pid=$mountebank_pid"
