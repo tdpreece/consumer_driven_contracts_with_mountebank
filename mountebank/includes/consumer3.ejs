@@ -1,15 +1,14 @@
 {
     "predicates": [{
-    "inject": "<%- stringify(filename, 'includes/consumer3_predicate_function.ejs') %>"
+        "inject": "<%- stringify(filename, 'includes/consumer3_predicate_function.ejs') %>"
     }],
     "responses": [{
       "is": {
         "statusCode": 200,
         "headers": {
-          "Location": "http://localhost:4545/customers/123",
           "Content-Type": "application/json"
         },
-        "body": "{\"id\": 123}"
+        "body": "{\"a\": 111}"
       }
     }]
 }

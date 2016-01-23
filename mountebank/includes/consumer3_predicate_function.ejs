@@ -1,3 +1,17 @@
-function(request) { 
-    return (request.method === "POST") && (request.path === "/process-it") && (request.body === "{\"x\": 1}");
+function (request, logger) {
+    if (request.path !== "/process") {
+        return false;
+    }
+    if (request.method !== "POST") {
+        return false;
+    }
+
+    var message = JSON.parse(request.body);
+    if (!("a" in message)) {
+        return false;
+    }   
+    if (message["a"] !== 111) {
+        return false;
+    }
+    return true;
 }
