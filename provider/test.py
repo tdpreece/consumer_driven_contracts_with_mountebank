@@ -11,6 +11,10 @@ class TestAgainstConsumer1(unittest.TestCase):
 
     def test_contract(self):
         path = '/record/100'
+        # The provider has state.  Data is setup for the test to avoid brittle
+        # tests that depend on the output of other tests.
+        # See discussion here:
+        # https://github.com/realestate-com-au/pact/wiki/Provider-states
         provider.DataStore.save_record({"a": 111, "b": 222})
         contractual_response = requests.get(self.stub_host_port+path)
         actual_response = requests.get(self.actual_host_port+path)
