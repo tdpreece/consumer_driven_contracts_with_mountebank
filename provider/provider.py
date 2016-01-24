@@ -13,10 +13,13 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         """Respond to a GET request."""
         # If someone went to "http://something.somewhere.net/foo/bar/",
         # then s.path equals "/foo/bar/".
-        s.send_response(200)
-        s.send_header("Content-type", "application/json")
-        s.end_headers()
-        s.wfile.write("{\"a\": 111, \"b\": 222}")
+        if s.path == '/record/100':
+            s.send_response(200)
+            s.send_header("Content-type", "application/json")
+            s.end_headers()
+            s.wfile.write("{\"a\": 111, \"b\": 222}")
+            return
+        s.send_response(404)
 
 
 if __name__ == '__main__':
