@@ -6,3 +6,4 @@ consumer_contracts_for_provider/mb1.log
 consumer_contracts_for_provider/node-v5.0.0-linux-x64
 *.swp
 *.pyc
+.ropeproject
