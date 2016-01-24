@@ -13,7 +13,7 @@ cd consumer_contracts_for_provider
 ./bootsrap
 ```
 
-## Test the provieder against the contract
+## Test the provider against the contract
 ```
 cd provider
 ./run_tests.sh
