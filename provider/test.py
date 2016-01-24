@@ -1,6 +1,8 @@
 import requests
 import unittest
 
+import provider
+
 
 class TestAgainstConsumer1(unittest.TestCase):
     def setUp(self):
@@ -9,6 +11,7 @@ class TestAgainstConsumer1(unittest.TestCase):
 
     def test_contract(self):
         path = '/record/100'
+        provider.DataStore.save_record({"a": 111, "b": 222})
         contractual_response = requests.get(self.stub_host_port+path)
         actual_response = requests.get(self.actual_host_port+path)
         self.assertEqual(actual_response.status_code, contractual_response.status_code)

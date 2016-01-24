@@ -32,6 +32,11 @@ class DataStore(object):
             record = json.load(f)
         return record
 
+    @staticmethod
+    def save_record(record):
+        with open('100', 'w') as f:
+            json.dump(record, f)
+
 
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer
