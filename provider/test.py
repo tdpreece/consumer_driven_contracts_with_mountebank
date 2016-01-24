@@ -18,7 +18,10 @@ class TestAgainstConsumer1(unittest.TestCase):
         provider.DataStore.save_record({"a": 111, "b": 222})
         contractual_response = requests.get(self.stub_host_port+path)
         actual_response = requests.get(self.actual_host_port+path)
-        self.assertEqual(actual_response.status_code, contractual_response.status_code)
+        self.assertEqual(
+            actual_response.status_code,
+            contractual_response.status_code
+        )
         contractual_response_json = contractual_response.json()
         actual_response_json = actual_response.json()
         self.assertDictContainsSubset(
