@@ -13,14 +13,22 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_GET(s):
         """Respond to a GET request."""
         if s.path == '/record/100':
-            with open('./100', 'r') as f:
-                record = json.load(f)
+            record_id = '100'
+            record = DataStore.get_record(record_id)
             s.send_response(200)
             s.send_header("Content-type", "application/json")
             s.end_headers()
             s.wfile.write(json.dumps(record))
             return
         s.send_response(404)
+
+
+class DataStore(object):
+    @staticmethod
+    def get_record(record_id):
+        with open(record_id, 'r') as f:
+            record = json.load(f)
+        return record
 
 
 if __name__ == '__main__':
