@@ -1,5 +1,6 @@
 import BaseHTTPServer
 import json
+import re
 import time
 
 
@@ -12,8 +13,9 @@ PORT_NUMBER = 1912
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_GET(self):
         """Respond to a GET request."""
-        if self.path == '/record/100':
-            record_id = '100'
+        matches = re.match(r'^/record/(\d+)$', self.path)
+        if matches:
+            record_id = matches.group(1)
             record = DataStore.get_record(record_id)
             self.send_response(200)
             self.send_header("Content-type", "application/json")
