@@ -1,4 +1,5 @@
 import BaseHTTPServer
+import json
 import time
 
 
@@ -13,11 +14,11 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         """Respond to a GET request."""
         if s.path == '/record/100':
             with open('./100', 'r') as f:
-                record = f.read()
+                record = json.load(f)
             s.send_response(200)
             s.send_header("Content-type", "application/json")
             s.end_headers()
-            s.wfile.write(record)
+            s.wfile.write(json.dumps(record))
             return
         s.send_response(404)
 
