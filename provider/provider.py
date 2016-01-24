@@ -12,10 +12,12 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_GET(s):
         """Respond to a GET request."""
         if s.path == '/record/100':
+            with open('./100', 'r') as f:
+                record = f.read()
             s.send_response(200)
             s.send_header("Content-type", "application/json")
             s.end_headers()
-            s.wfile.write("{\"a\": 111, \"b\": 222}")
+            s.wfile.write(record)
             return
         s.send_response(404)
 
