@@ -1,5 +1,6 @@
 import BaseHTTPServer
 import json
+import os
 import re
 import time
 
@@ -34,8 +35,14 @@ class DataStore(object):
 
     @staticmethod
     def save_record(record):
-        with open('100', 'w') as f:
+        file_name = str(record['id'])
+        with open(file_name, 'w') as f:
             json.dump(record, f)
+
+    @staticmethod
+    def delete_record(record):
+        file_name = str(record['id'])
+        os.remove(file_name)
 
 
 if __name__ == '__main__':
