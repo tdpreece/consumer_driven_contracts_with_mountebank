@@ -10,17 +10,17 @@ PORT_NUMBER = 1912
 
 
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
-    def do_GET(s):
+    def do_GET(self):
         """Respond to a GET request."""
-        if s.path == '/record/100':
+        if self.path == '/record/100':
             record_id = '100'
             record = DataStore.get_record(record_id)
-            s.send_response(200)
-            s.send_header("Content-type", "application/json")
-            s.end_headers()
-            s.wfile.write(json.dumps(record))
+            self.send_response(200)
+            self.send_header("Content-type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(record))
             return
-        s.send_response(404)
+        self.send_response(404)
 
 
 class DataStore(object):
