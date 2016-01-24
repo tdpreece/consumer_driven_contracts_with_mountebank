@@ -11,8 +11,6 @@ PORT_NUMBER = 1912
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_GET(s):
         """Respond to a GET request."""
-        # If someone went to "http://something.somewhere.net/foo/bar/",
-        # then s.path equals "/foo/bar/".
         if s.path == '/record/100':
             s.send_response(200)
             s.send_header("Content-type", "application/json")
