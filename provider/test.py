@@ -15,7 +15,7 @@ class TestAgainstConsumer1(unittest.TestCase):
         # tests that depend on the output of other tests.
         # See discussion here:
         # https://github.com/realestate-com-au/pact/wiki/Provider-states
-        record = {"id": 100, "a": 111, "b": 222}
+        record = {"id": 100, "a": 111, "b": 222, "c": 333}
         provider.DataStore.save_record(record)
 
         contractual_response = requests.get(self.stub_host_port+path)
