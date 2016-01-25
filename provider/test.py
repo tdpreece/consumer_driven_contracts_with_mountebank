@@ -17,17 +17,19 @@ class TestAgainstConsumer1(unittest.TestCase):
         # https://github.com/realestate-com-au/pact/wiki/Provider-states
         record = {"id": 100, "a": 111, "b": 222}
         provider.DataStore.save_record(record)
+
         contractual_response = requests.get(self.stub_host_port+path)
         actual_response = requests.get(self.actual_host_port+path)
+
         self.assertEqual(
             actual_response.status_code,
             contractual_response.status_code
         )
-        contractual_response_json = contractual_response.json()
-        actual_response_json = actual_response.json()
+        # The consumer shouldn't mind if the provider returns some
+        # extra data.
         self.assertDictContainsSubset(
-            contractual_response_json,
-            actual_response_json
+            contractual_response.json(),
+            actual_response.json()
         )
         provider.DataStore.delete_record(record)
 
