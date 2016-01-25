@@ -10,7 +10,7 @@ function (request, logger) {
     if (!("a" in message)) {
         return false;
     }   
-    if (message["a"] !== 111) {
+    if (isNaN(message["a"])) {
         return false;
     }
     return true;
