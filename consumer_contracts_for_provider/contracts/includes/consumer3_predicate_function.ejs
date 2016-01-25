@@ -13,5 +13,17 @@ function (request, logger) {
     if (isNaN(message["a"])) {
         return false;
     }
+    if (!("b" in message)) {
+        return false;
+    }   
+    if (isNaN(message["b"])) {
+        return false;
+    }
+    if (!("c" in message)) {
+        return false;
+    }   
+    if (isNaN(message["c"])) {
+        return false;
+    }
     return true;
 }
