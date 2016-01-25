@@ -60,5 +60,35 @@ class TestAgainstConsumer2(unittest.TestCase):
         provider.DataStore.delete_record(record)
 
 
+class TestAgainstConsumer3(unittest.TestCase):
+    def setUp(self):
+        self.stub_host_port = 'http://localhost:4547'
+        self.actual_host_port = 'http://localhost:1912'
+
+    def test_contract(self):
+        path = '/record'
+        record = {"a": 123, "b": 222, "c": 333}
+
+        contractual_response = requests.post(
+            self.stub_host_port+path,
+            json=record
+        )
+        actual_response = requests.post(
+            self.actual_host_port+path,
+            json=record
+        )
+
+        self.assertEqual(
+            actual_response.status_code,
+            contractual_response.status_code
+        )
+        # The consumer shouldn't mind if the provider returns some
+        # extra data.=`=jedi=0, =`=  (*_*expr*_*, msg=None) =`=jedi=`=
+        self.assertDictContainsSubset(
+            contractual_response.json(),
+            actual_response.json()
+        )
+
+
 if __name__ == '__main__':
     unittest.main()

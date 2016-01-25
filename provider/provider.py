@@ -25,6 +25,17 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             return
         self.send_response(404)
 
+    def do_POST(self):
+        """Respond to a GET request."""
+        if self.path == '/record':
+            # Code to allocate id and save record would go here.
+            self.send_response(201)
+            self.send_header("Content-type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({'id': 100}))
+            return
+        self.send_response(500)
+
 
 class DataStore(object):
     @staticmethod
