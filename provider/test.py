@@ -82,12 +82,8 @@ class TestAgainstConsumer3(unittest.TestCase):
             actual_response.status_code,
             contractual_response.status_code
         )
-        # The consumer shouldn't mind if the provider returns some
-        # extra data.=`=jedi=0, =`=  (*_*expr*_*, msg=None) =`=jedi=`=
-        self.assertDictContainsSubset(
-            contractual_response.json(),
-            actual_response.json()
-        )
+        for header_key in contractual_response.headers.keys():
+            self.assertIn(header_key, actual_response.headers.keys())
 
 
 if __name__ == '__main__':
