@@ -11,6 +11,8 @@ class TestAgainstConsumer1(unittest.TestCase):
         self.actual_host_port = 'http://localhost:1912'
 
     def test_contract(self):
+        # TODO Extract test difinition in contract and read in for test.
+        # See consumer 3 tests for details.
         path = '/record/100'
         # The provider has state.  Data is setup for the test to avoid brittle
         # tests that depend on the output of other tests.
@@ -36,6 +38,8 @@ class TestAgainstConsumer1(unittest.TestCase):
 
 
 class TestAgainstConsumer2(unittest.TestCase):
+        # TODO Extract test difinition in contract and read in for test.
+        # See consumer 3 tests for details.
     def setUp(self):
         self.stub_host_port = 'http://localhost:4546'
         self.actual_host_port = 'http://localhost:1912'
@@ -67,6 +71,10 @@ class TestAgainstConsumer3(unittest.TestCase):
         self.actual_host_port = 'http://localhost:1912'
 
     def test_contract(self):
+        # The tests could be configured to loop through all the request
+        # definitions in a contracts dir.  Thus, the provider team would
+        # not have to write as many new tests for changes to the consumer
+        # contracts.
         request_definition_file = (
             '/home/tdpreece/integration_projects'
             '/consumer_driven_contracts_with_mountebank'

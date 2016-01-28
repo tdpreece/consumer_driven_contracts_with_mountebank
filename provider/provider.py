@@ -30,6 +30,8 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         if self.path == '/record':
             # TODO: Implement code to allocate id and save record.
             self.send_response(201)
+            # TODO: Fix 'Transfer-Encoding' not found in headers
+            # failure in test for consumer 3.
             self.send_header("Content-type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps({'id': 100}))
