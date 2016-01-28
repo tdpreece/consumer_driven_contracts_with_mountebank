@@ -28,7 +28,7 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_POST(self):
         """Respond to a GET request."""
         if self.path == '/record':
-            # Code to allocate id and save record would go here.
+            # TODO: Implement code to allocate id and save record.
             self.send_response(201)
             self.send_header("Content-type", "application/json")
             self.end_headers()
