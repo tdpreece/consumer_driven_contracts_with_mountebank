@@ -1,8 +1,16 @@
 function (request, logger) {
-    if (request.path !== "/record") {
+    // TODO: Extract this so that it can be used to test against provider.
+    const expectedRequest = {
+        "path": "/record",
+        "method": "POST",
+        "json": {"a": 123, "b": 222, "c": 333},
+
+    }
+
+    if (request.path !== expectedRequest.path) {
         return false;
     }
-    if (request.method !== "POST") {
+    if (request.method !== expectedRequest.method) {
         return false;
     }
 
@@ -12,11 +20,9 @@ function (request, logger) {
         logger.info("Error in JSON.parse for request.body=" + request.body)
         logger.info(e)
     }
-    // TODO: Extract this so that it can be used to test against provider.
-    var expectedMessage = {"a": 123, "b": 222, "c": 333};
     const assert = require('assert');
     try {
-        assert.deepStrictEqual(message, expectedMessage);
+        assert.deepStrictEqual(message, expectedRequest.json);
     } catch (e) {
         logger.info(e)
         return false;
