@@ -6,7 +6,12 @@ function (request, logger) {
         return false;
     }
 
-    var message = JSON.parse(request.body);
+    try {
+        var message = JSON.parse(request.body);
+    } catch (e) {
+        logger.info("Error in JSON.parse for request.body=" + request.body)
+        logger.info(e)
+    }
     // TODO: Extract this so that it can be used to test against provider.
     var expectedMessage = {"a": 123, "b": 222, "c": 333};
     const assert = require('assert');
