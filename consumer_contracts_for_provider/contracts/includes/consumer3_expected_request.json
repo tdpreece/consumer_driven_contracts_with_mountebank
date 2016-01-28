@@ -1,0 +1,5 @@
+{
+    "path": "/record",
+    "method": "POST",
+    "json": {"a": 123, "b": 222, "c": 333}
+}

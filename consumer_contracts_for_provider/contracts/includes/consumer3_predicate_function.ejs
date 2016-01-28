@@ -1,16 +1,15 @@
 function (request, logger) {
-    // TODO: Extract this so that it can be used to test against provider.
-    const expectedRequest = {
-        "path": "/record",
-        "method": "POST",
-        "json": {"a": 123, "b": 222, "c": 333},
+    const assert = require('assert');
+    const fs = require('fs');
 
-    }
+    const expectedRequestJson = fs.readFileSync("/home/tdpreece/integration_projects/consumer_driven_contracts_with_mountebank/consumer_contracts_for_provider/contracts/includes/consumer3_expected_request.json");
+    const expectedRequest = JSON.parse(expectedRequestJson);
 
-    if (request.path !== expectedRequest.path) {
-        return false;
-    }
-    if (request.method !== expectedRequest.method) {
+    try {
+        assert.equal(request.path, expectedRequest.path);
+        assert.equal(request.method, expectedRequest.method);
+    } catch (e) {
+        logger.info(e);
         return false;
     }
 
@@ -20,7 +19,6 @@ function (request, logger) {
         logger.info("Error in JSON.parse for request.body=" + request.body)
         logger.info(e)
     }
-    const assert = require('assert');
     try {
         assert.deepStrictEqual(message, expectedRequest.json);
     } catch (e) {
