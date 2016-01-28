@@ -1,3 +1,4 @@
+import json
 import requests
 import unittest
 
@@ -66,16 +67,22 @@ class TestAgainstConsumer3(unittest.TestCase):
         self.actual_host_port = 'http://localhost:1912'
 
     def test_contract(self):
-        path = '/record'
-        record = {"a": 123, "b": 222, "c": 333}
+        request_definition_file = (
+            '/home/tdpreece/integration_projects'
+            '/consumer_driven_contracts_with_mountebank'
+            '/consumer_contracts_for_provider/contracts'
+            '/includes/consumer3_expected_request.json'
+        )
+        with open(request_definition_file, 'r') as f:
+            request_defintion = json.load(f)
 
         contractual_response = requests.post(
-            self.stub_host_port+path,
-            json=record
+            self.stub_host_port + request_defintion['path'],
+            json=request_defintion['json']
         )
         actual_response = requests.post(
-            self.actual_host_port+path,
-            json=record
+            self.actual_host_port + request_defintion['path'],
+            json=request_defintion['json']
         )
 
         self.assertEqual(
