@@ -8,9 +8,12 @@ function (request, logger) {
 
     var message = JSON.parse(request.body);
     // TODO: Extract this so that it can be used to test against provider.
-    var expected_message = {"a": 123, "b": 222, "c": 333};
-    // TODO: This this care about order?
-    if (JSON.stringify(message) !==  JSON.stringify(expected_message)) {
+    var expectedMessage = {"a": 123, "b": 222, "c": 333};
+    const assert = require('assert');
+    try {
+        assert.deepStrictEqual(message, expectedMessage);
+    } catch (e) {
+        logger.info(e)
         return false;
     }
 
