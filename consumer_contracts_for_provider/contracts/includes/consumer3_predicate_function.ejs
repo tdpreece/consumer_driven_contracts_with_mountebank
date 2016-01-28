@@ -1,8 +1,11 @@
 function (request, logger) {
     const assert = require('assert');
     const fs = require('fs');
+    const path = require('path');
 
-    const expectedRequestJson = fs.readFileSync("/home/tdpreece/integration_projects/consumer_driven_contracts_with_mountebank/consumer_contracts_for_provider/contracts/includes/consumer3_expected_request.json");
+    // CONTRACTS_BASE_DIR is an env variable that I set.
+    const expectedRequestFilePath = path.join(process.env.CONTRACTS_BASE_DIR, "includes/consumer3_expected_request.json");
+    const expectedRequestJson = fs.readFileSync(expectedRequestFilePath);
     const expectedRequest = JSON.parse(expectedRequestJson);
 
     try {
