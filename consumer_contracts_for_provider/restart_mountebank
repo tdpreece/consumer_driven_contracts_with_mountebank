@@ -1,2 +1,8 @@
-export CONTRACTS_BASE_DIR="/home/tdpreece/integration_projects/consumer_driven_contracts_with_mountebank/consumer_contracts_for_provider/contracts"
+#!/usr/bin/env bash
+
+set -e
+
+this_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export CONTRACTS_BASE_DIR="${this_dir}/contracts"
+
 ./mb restart --configfile contracts/imposters.ejs --allowInjection
