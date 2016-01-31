@@ -3,7 +3,7 @@ We want to test the integration between a provider and 3 consumers:
 * A provider that stores records,
 * A consumer that gets records and requires them to contain fields a and b,
 * A consumer that gets records and requires them to contain fields b and c,
-* A consumer that updates records via a POST request .
+* A consumer that updates records via a PATCH request .
 
 ## Set up
 * Clone the repository
