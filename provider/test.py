@@ -84,11 +84,11 @@ class TestAgainstConsumer3(unittest.TestCase):
         with open(request_definition_file, 'r') as f:
             request_defintion = json.load(f)
 
-        contractual_response = requests.post(
+        contractual_response = requests.patch(
             self.stub_host_port + request_defintion['path'],
             json=request_defintion['json']
         )
-        actual_response = requests.post(
+        actual_response = requests.patch(
             self.actual_host_port + request_defintion['path'],
             json=request_defintion['json']
         )

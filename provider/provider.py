@@ -25,11 +25,11 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             return
         self.send_response(404)
 
-    def do_POST(self):
+    def do_PATCH(self):
         """Respond to a GET request."""
-        if self.path == '/record':
+        if self.path == '/record/100':
             # TODO: Implement code to allocate id and save record.
-            self.send_response(201)
+            self.send_response(200)
             self.send_header("Location", '/record')
             self.end_headers()
             self.wfile.write(json.dumps({'id': 100}))

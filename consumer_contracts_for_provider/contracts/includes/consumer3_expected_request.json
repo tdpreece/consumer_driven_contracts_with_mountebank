@@ -1,5 +1,5 @@
 {
-    "path": "/record",
-    "method": "POST",
-    "json": {"a": 123, "b": 222, "c": 333}
+    "path": "/record/100",
+    "method": "PATCH",
+    "json": {"id": 100, "a": 111}
 }
