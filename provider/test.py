@@ -11,7 +11,7 @@ class TestAgainstConsumer1(unittest.TestCase):
         self.actual_host_port = 'http://localhost:1912'
 
     def test_contract(self):
-        # TODO Extract test difinition in contract and read in for test.
+        # TODO Extract test definition in contract and read in for test.
         # See consumer 3 tests for details.
         path = '/record/100'
         # The provider has state.  Data is setup for the test to avoid brittle
@@ -38,7 +38,7 @@ class TestAgainstConsumer1(unittest.TestCase):
 
 
 class TestAgainstConsumer2(unittest.TestCase):
-        # TODO Extract test difinition in contract and read in for test.
+        # TODO Extract test definition in contract and read in for test.
         # See consumer 3 tests for details.
     def setUp(self):
         self.stub_host_port = 'http://localhost:4546'
