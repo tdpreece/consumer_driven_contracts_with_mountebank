@@ -97,7 +97,14 @@ class TestAgainstConsumer3(unittest.TestCase):
             actual_response.status_code,
             contractual_response.status_code
         )
-        for header_key in contractual_response.headers.keys():
+        # Matching headers from Mountebank to headers from service import can
+        # be difficult because Mountebank can add extra headers that aren't
+        # important to the implementation, thus need to list the expected
+        # headers here.  See also,
+        # https://github.com/realestate-com-au/pact/wiki/Matching-gotchas
+        # TODO: Read from Mountebank config so only in one place.
+        expected_headers = ['Location']
+        for header_key in expected_headers:
             self.assertIn(header_key, actual_response.headers.keys())
 
 
