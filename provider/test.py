@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 import unittest
 
@@ -75,11 +76,9 @@ class TestAgainstConsumer3(unittest.TestCase):
         # definitions in a contracts dir.  Thus, the provider team would
         # not have to write as many new tests for changes to the consumer
         # contracts.
-        request_definition_file = (
-            '/home/tdpreece/integration_projects'
-            '/consumer_driven_contracts_with_mountebank'
-            '/consumer_contracts_for_provider/contracts'
-            '/includes/consumer3_expected_request.json'
+        request_definition_file = os.path.join(
+            os.environ['CONSUMER_CONTRACTS_ROOT'],
+            'contracts/includes/consumer3_expected_request.json'
         )
         with open(request_definition_file, 'r') as f:
             request_defintion = json.load(f)
