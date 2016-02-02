@@ -76,6 +76,8 @@ class TestAgainstConsumer3(unittest.TestCase):
         # definitions in a contracts dir.  Thus, the provider team would
         # not have to write as many new tests for changes to the consumer
         # contracts.
+        # Perhaps this could be used:
+        # https://pypi.python.org/pypi/parameterizedtestcase/0.1.0
         request_definition_file = os.path.join(
             os.environ['CONSUMER_CONTRACTS_ROOT'],
             'contracts/includes/consumer3_expected_request.json'
@@ -83,11 +85,13 @@ class TestAgainstConsumer3(unittest.TestCase):
         with open(request_definition_file, 'r') as f:
             request_defintion = json.load(f)
 
-        contractual_response = requests.patch(
+        contractual_response = requests.request(
+            request_defintion['method'],
             self.stub_host_port + request_defintion['path'],
             json=request_defintion['json']
         )
-        actual_response = requests.patch(
+        actual_response = requests.request(
+            request_defintion['method'],
             self.actual_host_port + request_defintion['path'],
             json=request_defintion['json']
         )
@@ -96,7 +100,7 @@ class TestAgainstConsumer3(unittest.TestCase):
             actual_response.status_code,
             contractual_response.status_code
         )
-        # Matching headers from Mountebank to headers from service import can
+        # Matching headers from Mountebank to headers from service can
         # be difficult because Mountebank can add extra headers that aren't
         # important.  See also,
         # https://github.com/realestate-com-au/pact/wiki/Matching-gotchas
