@@ -100,8 +100,14 @@ class TestAgainstConsumer3(unittest.TestCase):
         # be difficult because Mountebank can add extra headers that aren't
         # important.  See also,
         # https://github.com/realestate-com-au/pact/wiki/Matching-gotchas
-        for header_key in set(contractual_response.headers.keys()).intersection(['Location', 'Content-Type']):
-            self.assertIn(header_key, actual_response.headers.keys())
+        for key in \
+                self.get_header_keys_to_match_on(contractual_response.headers):
+            self.assertIn(key, actual_response.headers.keys())
+
+    @staticmethod
+    def get_header_keys_to_match_on(contractual_response_headers):
+        return set(contractual_response_headers.keys())\
+            .intersection(['Location', 'Content-Type'])
 
 
 if __name__ == '__main__':
