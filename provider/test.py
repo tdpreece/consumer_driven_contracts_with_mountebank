@@ -46,8 +46,16 @@ class TestAgainstConsumer2(unittest.TestCase):
         self.actual_host_port = 'http://localhost:1912'
 
     def test_contract(self):
-        path = '/record/100'
-        record = {"id": 100, "a": 123, "b": 222, "c": 333}
+        stub_definition_file = os.path.join(
+            os.environ['CONSUMER_CONTRACTS_ROOT'],
+            'contracts/includes/consumer2.json'
+        )
+        with open(stub_definition_file, 'r') as f:
+            stub_definition = json.load(f)
+
+        path = stub_definition["predicates"][0]["equals"]["path"]
+        # record = {"id": 101, "a": 123, "b": 222, "c": 333}
+        record = json.loads(stub_definition["responses"][0]["is"]["body"])
         provider.DataStore.save_record(record)
 
         contractual_response = requests.get(self.stub_host_port+path)
