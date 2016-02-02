@@ -39,8 +39,6 @@ class TestAgainstConsumer1(unittest.TestCase):
 
 
 class TestAgainstConsumer2(unittest.TestCase):
-        # TODO Extract test definition in contract and read in for test.
-        # See consumer 3 tests for details.
     def setUp(self):
         self.stub_host_port = 'http://localhost:4546'
         self.actual_host_port = 'http://localhost:1912'
@@ -69,7 +67,7 @@ class TestAgainstConsumer2(unittest.TestCase):
             contractual_response.status_code
         )
         # The consumer shouldn't mind if the provider returns some
-        # extra data.
+        # extra data.  Following Postel's law.
         self.assertDictContainsSubset(
             contractual_response.json(),
             actual_response.json()
