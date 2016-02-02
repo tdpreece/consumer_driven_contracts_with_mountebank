@@ -35,6 +35,3 @@ cd provider
 * Add simple implementation of consumers with tests.
 * Add overview of how changes to contracts, providers and consumers can
   be handled going forward.
-* Remove hardcoding of response headers from tests (should be able to read
-  in from Mountebank conf)
-* Extract hard coded port numbers.
