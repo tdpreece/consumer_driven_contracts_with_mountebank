@@ -12,25 +12,30 @@ class TestAgainstConsumer1(unittest.TestCase):
         self.actual_host_port = 'http://localhost:1912'
 
     def test_contract(self):
-        # TODO Extract test definition in contract and read in for test.
-        # See consumer 3 tests for details.
-        path = '/record/100'
-        # The provider has state.  Data is setup for the test to avoid brittle
-        # tests that depend on the output of other tests.
-        # See discussion here:
-        # https://github.com/realestate-com-au/pact/wiki/Provider-states
-        record = {"id": 100, "a": 111, "b": 222, "c": 333}
+        stub_definition_file = os.path.join(
+            os.environ['CONSUMER_CONTRACTS_ROOT'],
+            'contracts/includes/consumer1.json'
+        )
+        with open(stub_definition_file, 'r') as f:
+            stub_definition = json.load(f)
+
+        path = stub_definition["predicates"][0]["equals"]["path"]
+        method = stub_definition["predicates"][0]["equals"]["method"]
+        record = json.loads(stub_definition["responses"][0]["is"]["body"])
         provider.DataStore.save_record(record)
 
-        contractual_response = requests.get(self.stub_host_port+path)
-        actual_response = requests.get(self.actual_host_port+path)
+        contractual_response = requests.request(
+            method,
+            self.stub_host_port+path
+        )
+        actual_response = requests.request(method, self.actual_host_port+path)
 
         self.assertEqual(
             actual_response.status_code,
             contractual_response.status_code
         )
         # The consumer shouldn't mind if the provider returns some
-        # extra data.
+        # extra data.  Following Postel's law.
         self.assertDictContainsSubset(
             contractual_response.json(),
             actual_response.json()
