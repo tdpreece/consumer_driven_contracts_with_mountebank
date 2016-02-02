@@ -54,12 +54,15 @@ class TestAgainstConsumer2(unittest.TestCase):
             stub_definition = json.load(f)
 
         path = stub_definition["predicates"][0]["equals"]["path"]
-        # record = {"id": 101, "a": 123, "b": 222, "c": 333}
+        method = stub_definition["predicates"][0]["equals"]["method"]
         record = json.loads(stub_definition["responses"][0]["is"]["body"])
         provider.DataStore.save_record(record)
 
-        contractual_response = requests.get(self.stub_host_port+path)
-        actual_response = requests.get(self.actual_host_port+path)
+        contractual_response = requests.request(
+            method,
+            self.stub_host_port+path
+        )
+        actual_response = requests.request(method, self.actual_host_port+path)
 
         self.assertEqual(
             actual_response.status_code,
